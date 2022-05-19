@@ -3,6 +3,7 @@ import {Route} from "react-router-dom";
 import {Lesson1} from "../Lessons/Lesson1";
 import {Lesson2} from "../Lessons/Lesson2";
 
+
 export const Routes = () => {
     return (
         <div>

@@ -12,7 +12,7 @@ import {Lesson2} from "./Components/Lessons/Lesson2";
 const {Header, Content, Sider} = Layout;
 
 //todo версия веб шторма 2020.2
-
+// https://ant.design/components/overview/
 const App = () => {
 
     const navList = [

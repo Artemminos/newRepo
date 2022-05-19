@@ -1,108 +1,119 @@
 import React from 'react';
-import {NameInput} from "../name_input";
-import {PasswordInput} from "../password_input";
-/**
- const => Неизменяемая ссылка
- let => изменяемая ссылка
- **/
-export const Lesson1 = () => {
-    //Как создать проект https://create-react-app.dev/docs/getting-started/
 
-    /**
-     let art = {
-        name: 'artem'
-    };
-     let art2 = art;
-     console.log(art, '<<<art')
-     console.log(art2, '<<<art2')
-     art2.name = 'andy'
-     console.log(art2, '<<<art2')
-     **/
 
-    /**
-     https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-     const arr = ['artem', () => {
-            console.log('andy')
-        }]
-     const [name, fn] = arr;
-     const name1 = arr[0]
-     const fn1 = arr[1]
-     **/
 
-    /**
-     name => это переменная
-     setName => функция которая меняет переменную
-     **/
-
-    /**    const profile = {
+export const Lesson2 = () => {
+    const [age, setAge] = React.useState(0);
+    const userArray = [
+        {
             name: 'artem',
-            location: {
-                city: 'Belgorod',
-                some: {
-                    abc: 123
-                }
-            }
-        }
-     console.log(profile.location.some.abc)
-     console.log(profile['location']['some']['abc'])
-     **/
+            password: '123',
+            surName: 'rus',
+            age: 18
+        },
+        {
+            name: 'andy',
+            password: '123',
+            surName: 'rus',
+            age: 10
 
-    /**
-     function returnProfileStr() {
-           //какая то логика получения профайла
-       return 'profile'
-   }
+        },
+        {
+            name: 'vlad',
+            password: '123',
+            surName: 'rus',
+            age: 10
 
-     const TabsContent = {
-       profile: 'content1',
-       market: 'content2',
-       news: 'content3'
-   }
-     console.log(TabsContent[returnProfileStr()])
-     **/
+        },
+        {
+            name: 'Some',
+            password: '123',
+            surName: 'rus',
+            age: 5
 
-    const [name, setName] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [status, setStatus] = React.useState(false);
+        },
+        {
+            name: 'Chel',
+            password: '123',
+            surName: 'rus',
+            age: 16
 
-
-    /**
-     onBlur =>событие скрывания
-     onFocus => событие фокусировки
-     onClick =>событие клика
-     onChange =>событие изменения
-     **/
-
-    /**
-     debugger вызывается в рамках области видимости
-     **/
-    const handleClick = (e) => {
-        console.log(name, 'name')
-        console.log(password, 'password')
-        if (name.length > 5 && password.length > 5) {
-            setStatus(true)
+        },
+    ]
+    const ab = () => {
+        return 'ANDY'
+    }//функция которая вернет строчку 'ANDY'
+    const andy = ab(); //переменная которой будет присвоена строка 'ANDY'
+    const obj = {
+        name: 'artem',
+        location: {
+            city: 'belogorod',
+            street: 'esenina'
         }
     }
-    const fnForUseEffect = function () {
-        if (status) {
-            alert('cool')
+    //console.log(obj['location']['city'])
+    const renderList = () => {
+        const listArray = [
+            {
+                name: 'peproni',
+                price: '200'
+            },
+            {
+                name: 'carbinara',
+                price: '200'
+            },
+            {
+                name: 'margarita',
+                price: '600'
+            },
+        ];
+
+        const res = [];
+        for (let i = 0; i < listArray.length; i++) {
+            const pizza = listArray[i];
+            const elem = <li>
+                name: {pizza.name} <br/>
+                surName: {pizza.price} <br/>
+            </li>
+            res.push(elem)
         }
+        return res
+
     }
-    React.useEffect(fnForUseEffect, [status])//массив зависимостей за которыми мы следим
-
-    React.useEffect(fnForUseEffect, [])//если ничего не передать то вызовется только один раз при маунте компоненты
-
-    React.useEffect(fnForUseEffect)//если ничего не передать то вызовется только один раз при маунте компоненты
-
     return (
         <div>
-            <NameInput setName={setName} name={name} label={'Имя'}/>
-            <PasswordInput setPassword={setPassword} password={password}/>
-            {/*{NameInput(setName)} | <NameInput/> одно и тоже*/}
-            <button onClick={handleClick}>
-                submit
-            </button>
+            <input autoFocus={true} type="text" value={age} onChange={(e) => {
+                const value = e.target.value // получение значения
+                //debugger
+                if (value > 20) {
+                    setAge(0)
+                } else {
+                    setAge(Number(value))
+                }
+            }}/>
+            {/*<Lesson1/>*/}
 
+            <ul>
+                {
+                    userArray.map(
+                        (user, index) => {
+                            //debugger
+                            const elem = <li>
+                                name: {user.name} <br/>
+                                surName: {user.surName} <br/>
+                                password: {user.password} <br/>
+                            </li>
+                            if (user.age >= age) {
+                                return elem
+                            }
+                        }
+                    )
+                }
+
+            </ul>
+            {renderList()}
         </div>
     );
 };
+//todo сделайте https://codesandbox.io/s/webni0?file=/demo.js https://ant.design/components/form/#header
+

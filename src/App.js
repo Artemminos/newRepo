@@ -1,121 +1,74 @@
-import React, {DependencyList, EffectCallback} from 'react';
-import {NameInput} from "./Components/name_input";
-import {PasswordInput} from "./Components/password_input";
-import {Lesson1} from "./Components/Lessons/Lesson1";
+import React from 'react';
+import 'antd/dist/antd.css';
+import './index.css';
+import {Layout, Menu, Breadcrumb, Slider} from 'antd';
 
+import {Route, Link} from "react-router-dom";
+import Parasha, {About} from "./Page/About";
+import {Routes} from "./Components/routes/routes";
+import {Lesson1} from "./Components/Lessons/Lesson1";
+import {Lesson2} from "./Components/Lessons/Lesson2";
+
+const {Header, Content, Sider} = Layout;
+
+//todo версия веб шторма 2020.2
 
 const App = () => {
-    const [age, setAge] = React.useState(0);
-    const userArray = [
+
+    const navList = [
         {
-            name: 'artem',
-            password: '123',
-            surName: 'rus',
-            age: 18
+            icon: <Link to="/lesson1">Lesson1</Link>,
         },
         {
-            name: 'andy',
-            password: '123',
-            surName: 'rus',
-            age: 10
-
+            icon: <Link to="/lesson2">Lesson2</Link>,
         },
         {
-            name: 'vlad',
-            password: '123',
-            surName: 'rus',
-            age: 10
-
+            icon: <Link to="/market">market</Link>,
         },
         {
-            name: 'Some',
-            password: '123',
-            surName: 'rus',
-            age: 5
-
+            icon: <Link to="/profile">profile</Link>,
         },
         {
-            name: 'Chel',
-            password: '123',
-            surName: 'rus',
-            age: 16
-
+            icon: <Link to="/custom">custom</Link>,
         },
     ]
-    const ab = () => {
-        return 'ANDY'
-    }
-    const andy = ab(); //<==ANDY
-    const obj = {
-        name: 'artem',
-        location: {
-            city: 'belogorod',
-            street: 'esenina'
-        }
-    }
-    //console.log(obj['location']['city'])
-    const renderList = () => {
-        const listArray = [
-            {
-                name: 'peproni',
-                price: '200'
-            },
-            {
-                name: 'carbinara',
-                price: '200'
-            },
-            {
-                name: 'margarita',
-                price: '600'
-            },
-        ];
-
-        const res = [];
-        for (let i = 0; i < listArray.length; i++) {
-            const pizza = listArray[i];
-            const elem = <li>
-                name: {pizza.name} <br/>
-                surName: {pizza.price} <br/>
-            </li>
-            res.push(elem)
-        }
-        return res
-
-    }
     return (
-        <div>
-            <input autoFocus={true} type="text" value={age} onChange={(e) => {
-                console.log(e)
-                const value = e.target.value
-                //debugger
-                if (value > 20) {
-                    setAge(0)
-                } else {
-                    setAge(Number(value))
-                }
-            }}/>
-            {/*<Lesson1/>*/}
+        <Layout>
+            <Header className="header">
+                <div className="logo"/>
+            </Header>
+            <Layout>
+                <Sider
+                    style={{
+                        overflow: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                    }}
+                >
+                    <div className="logo"/>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={navList}/>
+                </Sider>
+                <Layout
+                    style={{
+                        padding: '0 24px 24px',
+                    }}
+                >
+                    <Content
+                        style={{
+                            padding: 24,
+                            margin: 0,
+                            minHeight: 280,
+                        }}
+                    >
+                        <Routes/>
 
-            <ul>
-                {
-                    userArray.map(
-                        (user, index) => {
-                            //debugger
-                            const elem = <li>
-                                name: {user.name} <br/>
-                                surName: {user.surName} <br/>
-                                password: {user.password} <br/>
-                            </li>
-                            if (user.age >= age) {
-                                return elem
-                            }
-                        }
-                    )
-                }
-
-            </ul>
-            {renderList()}
-        </div>
+                    </Content>
+                </Layout>
+            </Layout>
+        </Layout>
     );
 };
 //todo сделайте https://codesandbox.io/s/webni0?file=/demo.js https://ant.design/components/form/#header

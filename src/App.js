@@ -51,12 +51,14 @@ const App = () => {
                     <div className="logo"/>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={navList}/>
                 </Sider>
-                <Layout
-                    style={{
-                        padding: '0 24px 24px',
-                    }}
-                >
+                <Layout style={{ padding: '0 24px 24px' }}>
+                    <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>List</Breadcrumb.Item>
+                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                    </Breadcrumb>
                     <Content
+                        className="site-layout-background"
                         style={{
                             padding: 24,
                             margin: 0,

@@ -2,6 +2,7 @@ import React from 'react';
 import {Route} from "react-router-dom";
 import {Lesson1} from "../Lessons/Lesson1";
 import {Lesson2} from "../Lessons/Lesson2";
+import {LessonRepeatV1} from "../Lessons/LessonRepeat";
 
 
 export const Routes = () => {
@@ -13,8 +14,8 @@ export const Routes = () => {
             <Route path="/users">
                 <Lesson2/>
             </Route>
-            <Route path="/market">
-                market
+            <Route path="/repeat">
+                <LessonRepeatV1/>
             </Route>
             <Route path="/profile">
                 profile

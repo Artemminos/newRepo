@@ -1,13 +1,11 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-import {Layout, Menu, Breadcrumb, Slider} from 'antd';
+import {Layout, Menu} from 'antd';
 
-import {Route, Link} from "react-router-dom";
-import Parasha, {About} from "./Page/About";
+import {Link} from "react-router-dom";
 import {Routes} from "./Components/routes/routes";
-import {Lesson1} from "./Components/Lessons/Lesson1";
-import {Lesson2} from "./Components/Lessons/Lesson2";
+
 
 const {Header, Content, Sider} = Layout;
 
@@ -23,7 +21,7 @@ const App = () => {
             icon: <Link to="/lesson2">Lesson2</Link>,
         },
         {
-            icon: <Link to="/market">market</Link>,
+            icon: <Link to="/repeat">repeat</Link>,
         },
         {
             icon: <Link to="/profile">profile</Link>,
@@ -33,44 +31,17 @@ const App = () => {
         },
     ]
     return (
-        <Layout>
-            <Header className="header">
-                <div className="logo"/>
-            </Header>
-            <Layout>
-                <Sider
-                    style={{
-                        overflow: 'auto',
-                        height: '100vh',
-                        position: 'fixed',
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                    }}
-                >
-                    <div className="logo"/>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={navList}/>
-                </Sider>
-                <Layout style={{ padding: '0 24px 24px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <Content
-                        className="site-layout-background"
-                        style={{
-                            padding: 24,
-                            margin: 0,
-                            minHeight: 280,
-                        }}
-                    >
-                        <Routes/>
-
-                    </Content>
-                </Layout>
+    <Layout>
+        <Header className="header">
+            <div className="logo" />
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={navList} />
+        </Header>
+        <Content style={{ padding: '0 50px' }}>
+            <Layout className="site-layout-background" style={{ padding: '24px 0' }}>
+                <Routes/>
             </Layout>
-        </Layout>
+        </Content>
+    </Layout>
     );
 };
 //todo сделайте https://codesandbox.io/s/webni0?file=/demo.js https://ant.design/components/form/#header

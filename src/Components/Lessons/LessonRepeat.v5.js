@@ -5,15 +5,20 @@ export const LessonRepeatV1 = () => {
     const [searchValue, setSearchValue] = React.useState('')
     const [data, setData] = React.useState([])
     const serverArray = [
-        'artem',
-        'andrey',
-        'dima',
-        'vlad',
-        'evgeni',
-        'dasha',
-        'katya',
-        'vika'
-    ]
+        {
+            name:'artem',
+            city:'belgorod',
+        },
+        {
+            name:'dima',
+            city:'moskow',
+        },
+        {
+            name:'andy',
+            city:'moskow',
+        },
+    ];
+
     React.useEffect(() => {
         //server fetch
         setData(serverArray)
@@ -22,15 +27,18 @@ export const LessonRepeatV1 = () => {
         const value = event.target.value;
         setSearchValue(value);
         const regEx = new RegExp(value, 'gi');
-        setData(serverArray.filter((item) => item.match(regEx)))
+        setData(serverArray.filter((item) => item.city.match(regEx)))
     }
     return (
         <div>
             <Input
+                placeholder={'Город'}
                 value={searchValue}
-                onChange={filterFn} type="text"/>
+                onChange={filterFn}
+                type="text"
+            />
             {data.map((item, index) => {
-                return <div>{item}<br/></div>
+                return <div>{item.name}<br/></div>
             })}
         </div>
     );

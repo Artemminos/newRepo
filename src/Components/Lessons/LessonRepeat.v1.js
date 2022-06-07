@@ -1,34 +1,26 @@
 import React from 'react';
 import {Input, List} from 'antd';
-
+const dataArray = [
+    'artem',
+    'andrey',
+    'dima',
+    'vlad',
+    'evgeni',
+    'dasha',
+    'katya',
+    'vika'
+]
 export const LessonRepeatV1 = () => {
     const [searchValue, setSearchValue] = React.useState('')
-    const [data, setData] = React.useState([
-        'artem',
-        'andrey',
-        'dima',
-        'vlad',
-        'evgeni',
-        'dasha',
-        'katya',
-        'vika'
-    ])
-    const dataArray = [
-        'artem',
-        'andrey',
-        'dima',
-        'vlad',
-        'evgeni',
-        'dasha',
-        'katya',
-        'vika'
-    ]
+    const [data, setData] = React.useState(dataArray)
+
     return (
         <div>
             <Input
                 value={searchValue}
                 onChange={(e) => {
                     setSearchValue(e.target.value)
+
                     if (e.target.value.length === 0){
                         setData(dataArray)
                     }else{
@@ -42,7 +34,9 @@ export const LessonRepeatV1 = () => {
                             return res
                         })
                     }
-                }} type="text"/>
+                }}
+                type="text"
+            />
             {data.map((item,index)=>{
                 return <div>{item}<br/></div>
             })}

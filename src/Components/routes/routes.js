@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from "react-router-dom";
 import {Lesson1} from "../Lessons/Lesson1";
 import {Lesson2} from "../Lessons/Lesson2";
-import {LessonRepeatV1} from "../Lessons/LessonRepeat";
+import {LessonRepeatV1} from "../Lessons/LessonRepeat.v6";
 
 
 export const Routes = () => {

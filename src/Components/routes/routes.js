@@ -6,6 +6,13 @@ import {LessonRepeatV1} from "../Lessons/LessonRepeat.v6";
 
 
 export const Routes = () => {
+    const arr = [
+        'name',
+        'pass'
+    ];
+
+    const content = arr.map(item=><div>{item}1</div>);
+    console.log(content)
     return (
         <div>
             <Route path="/about">
@@ -20,8 +27,10 @@ export const Routes = () => {
             <Route path="/profile">
                 profile
             </Route>
-            <Route path="/customUrl">
-                custom
+            <Route path="/custom">
+                <div>
+                    {content}
+                </div>
             </Route>
         </div>
     );

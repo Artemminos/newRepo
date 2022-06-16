@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-
 export const Lesson2 = () => {
     const [age, setAge] = React.useState(0);
     const userArray = [
@@ -82,15 +81,19 @@ export const Lesson2 = () => {
     }
     return (
         <div>
-            <input autoFocus={true} type="text" value={age} onChange={(e) => {
-                const value = e.target.value // получение значения
-                //debugger
-                if (value > 20) {
-                    setAge(0)
-                } else {
-                    setAge(Number(value))
-                }
-            }}/>
+            <input
+                autoFocus={true}
+                type="text"
+                value={age}
+                onChange={(e) => {
+                    const value = e.target.value // получение значения
+                    //debugger
+                    if (value > 20) {
+                        setAge(0)
+                    } else {
+                        setAge(Number(value))
+                    }
+                }}/>
             {/*<Lesson1/>*/}
 
             <ul>

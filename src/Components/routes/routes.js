@@ -3,6 +3,7 @@ import {Route} from "react-router-dom";
 import {Lesson1} from "../Lessons/Lesson1";
 import {Lesson2} from "../Lessons/Lesson2";
 import {LessonRepeatV1} from "../Lessons/LessonRepeat.v6";
+import {FrontendWithExpress} from "../Lessons/express/frontend";
 
 
 export const Routes = () => {
@@ -31,6 +32,9 @@ export const Routes = () => {
                 <div>
                     {content}
                 </div>
+            </Route>
+            <Route path="/nodejs">
+               <FrontendWithExpress/>
             </Route>
         </div>
     );

@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-
+import {useSelector, useDispatch} from 'react-redux'
+import {setUsers, deleteUserFromState, changeUser} from '../../../slices/userSlice'
 
 const fetchData = async () => {
     const {data} = await axios.get('http://localhost:3001/users')
     return data
 }
-
 const sendData = async (userName) => {
     const newUser = {
         name: userName,
@@ -18,7 +18,8 @@ const sendData = async (userName) => {
     })
     return data
 }
-const updateUser = async (newName, id) => {
+const updateUser =
+    async (newName, id) => {
     const {data} = await axios.patch('http://localhost:3001/users', {
         data: {
             id,
@@ -27,7 +28,6 @@ const updateUser = async (newName, id) => {
     })
     return data
 }
-
 const deleteUser = async (id) => {
     const {data} = await axios.delete('http://localhost:3001/users', {
         data: {
@@ -37,14 +37,23 @@ const deleteUser = async (id) => {
     return data
 }
 
+
 export const FrontendWithExpress = () => {
     const [serverData, setServerData] = React.useState([]);
     const [text, setText] = React.useState('');
     const [name, setName] = React.useState('');
     const [selectedUser, setSelectedUser] = React.useState(null)
+
+
+    const users = useSelector((state) => state.users)
+    const dispatch = useDispatch()
+
+
+    console.log(users)
     React.useEffect(() => {
         fetchData().then((data) => {
             setServerData(data);
+            dispatch(setUsers(data));
         })
     }, [])
 
@@ -72,8 +81,11 @@ export const FrontendWithExpress = () => {
                         pass:{item.pass}
 
                         <button onClick={() => {
-                            deleteUser(item.id).then((users)=>{
+                            dispatch(deleteUserFromState(item.id))
+                            deleteUser(item.id).then((users) => {
                                 setServerData(users)
+                                dispatch(setUsers(users));
+
                             })
                         }}>delete
                         </button>
@@ -83,18 +95,26 @@ export const FrontendWithExpress = () => {
                 <button onClick={() => {
                     sendData(text).then((users) => {
                         setServerData(users);
+                        dispatch(setUsers(users));
+
                     })
                 }}>send
                 </button>
             </div>
             <div>
                 <h1>update user name</h1>
-                <input onChange={(e) => {
-                    setName(e.target.value)
-                }} type="text" placeholder={'new name'}/>
+                <input
+                    onChange={(e) => {
+                        setName(e.target.value)
+                    }} type="text" placeholder={'new name'}/>
                 <button onClick={() => {
                     updateUser(name, selectedUser.id).then((users) => {
                         setServerData(users)
+                        dispatch(setUsers(users));
+                        dispatch(changeUser({
+                            name: name,
+                            id: selectedUser.id
+                        }));
                     })
                 }}>
                     change name
@@ -103,4 +123,3 @@ export const FrontendWithExpress = () => {
         </div>
     );
 }
-

@@ -29,6 +29,9 @@ const App = () => {
         {
             icon: <Link to="/custom">custom</Link>,
         },
+        {
+            icon: <Link to="/nodejs">nodejs</Link>,
+        },
     ]
     return (
     <Layout>

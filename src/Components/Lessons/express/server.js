@@ -23,13 +23,14 @@ app.post('/users', function (req, res) {
 });
 
 app.patch('/users', function (req, res) {
-    const {data} = req.body
-    users.find(user => user.id === data.id).name = data.name
+    const {name, id} = req.body.data
+    console.log(req.body)
+    users.find(user => user.id === id).name = name
     res.send(JSON.stringify(users));
 });
 app.delete('/users', function (req, res) {
-    const {data} = req.body
-    users = users.filter(user => user.id !== data.id);
+    const {id} = req.body
+    users = users.filter(user => user.id !== id);
     res.send(JSON.stringify(users));
 });
 
